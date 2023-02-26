@@ -17,5 +17,15 @@
         </section>
         <small class="pub">publié le {{ $post->created_at->format('d/m/Y H:i:s') }}</small>
         <h2>comments:</h2>
+        @if (count($post->comment) == 0)
+            <small>0 comment</small>
+        @else
+            @foreach ($post->comment as $comment)
+                <div class="comment">
+                    <p>{{ $comment->body }}</p>
+                    <small>created at {{ $comment->created_at }}</small>
+                </div>
+            @endforeach
+        @endif
     </div>
 @endsection
